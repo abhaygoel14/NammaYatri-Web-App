@@ -1,3 +1,6 @@
 .header {
   color: red;
+  background: lightblue;
+  margin: 0;
+  height: 70px;
 }
