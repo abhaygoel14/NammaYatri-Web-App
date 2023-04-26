@@ -94,12 +94,60 @@ body {
 }
 
 a {
-  color: inherit;
+  color: white;
   text-decoration: none;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.about-us,
+.mobility {
+  background-color: rgb(44 47 58);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.yatri-app {
+  background-color: rgb(241 241 241);
+}
+.yatri-app,
+.mobility {
+  padding: 2.5rem 2rem 5rem;
+}
+#divider {
+  width: 8rem;
+  height: 0.625rem;
+  background-color: rgb(255 183 56);
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 1280px) {
+  .about-us,
+  .yatri-app {
+    padding-left: 12rem;
+    padding-right: 12rem;
+  }
+}
+
+@media screen and (min-width: 645px) {
+  #grid-control {
+    flex-direction: row;
+  }
+
+  #grid-control div {
+    max-width: 50% !important;
+  }
+  #grid-control div img {
+    margin-top: 0;
   }
 }

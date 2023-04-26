@@ -1,12 +1,10 @@
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import dynamic from "next/dynamic";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const NavbarComponent = dynamic(() => import("@/component/Navbar"));
 export default function Home() {
   return (
     <>
-      <h1> Hello this is about us </h1>
+      <NavbarComponent />
     </>
   );
 }
