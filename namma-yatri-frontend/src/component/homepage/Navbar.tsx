@@ -1,6 +1,6 @@
 import useIsLargeView from "@/utils/useIsLarge";
 import styled from "@emotion/styled";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
@@ -29,13 +29,15 @@ export default function Navbar() {
           alignItems: "center",
         }}
       >
-        <Image
-          src="https://nammayatri.in/logos/nammaYatrilogo.svg"
-          alt="logo.png"
-          width="120"
-          height="50"
-          style={{ cursor: "pointer", maxWidth: "100%", height: "auto" }}
-        />
+        <Link href="/homepage">
+          <Image
+            src="https://nammayatri.in/logos/nammaYatrilogo.svg"
+            alt="logo.png"
+            width="120"
+            height="50"
+            style={{ cursor: "pointer", maxWidth: "100%", height: "auto" }}
+          />
+        </Link>
         <Box
           sx={{
             color: "white",
@@ -67,6 +69,22 @@ export default function Navbar() {
             >
               About Us
             </StyledTypography>
+          </Link>
+          <Link href="/login">
+            <Button
+              sx={{
+                background: "rgb(252 195 44 / 1)",
+                color: "#2a2a2a",
+                "&:hover": {
+                  background: "rgb(252 195 44 / 1)",
+                  color: "black",
+                },
+              }}
+            >
+              <Typography fontSize={16} fontWeight={600}>
+                Login/Sign up
+              </Typography>
+            </Button>
           </Link>
         </Box>
       </Box>

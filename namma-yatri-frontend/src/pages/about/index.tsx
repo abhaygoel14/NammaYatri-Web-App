@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-const NavbarComponent = dynamic(() => import("@/component/Navbar"));
+const NavbarComponent = dynamic(() => import("@/component/homepage/Navbar"));
 const AutoComponent = dynamic(() => import("@/component/about/Auto"));
 const IndexComponent = dynamic(() => import("@/component/about/Index"));
 const MobilityComponent = dynamic(() => import("@/component/about/Mobility"));
