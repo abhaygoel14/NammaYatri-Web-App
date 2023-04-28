@@ -9,17 +9,20 @@ import {
   InputLabel,
   Stack,
   Button,
+  Divider,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import * as React from "react";
 import { useState } from "react";
 import LoginForm from "./LoginForm";
-
+import { useForm } from "react-hook-form";
 const textColor = `opacity: 1;
 color: rgb(244 244 246 / var(opacity));`;
 
 interface FormProps {
   showmodal: boolean;
   setshowmodal: React.Dispatch<React.SetStateAction<boolean>>;
+  SetOtp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function PhoneForm(props: FormProps) {
   const isLarge = useIsLargeView({ breakpoint: 786 });
@@ -28,6 +31,11 @@ export default function PhoneForm(props: FormProps) {
     whatsapp: "",
     email: "",
   });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [loginclicked, setloginclicked] = useState(false);
 
   const inputstyle = {
@@ -40,9 +48,10 @@ export default function PhoneForm(props: FormProps) {
     setSignUpdetails({ ...SignUpdetails, [name]: e.target.value });
   };
 
-  const handlesubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(SignUpdetails);
+  const handlesubmit = (data: any) => {
+    props.SetOtp(true);
+    props.setshowmodal(!props.showmodal);
+    console.log(data);
   };
   return (
     <>
@@ -56,43 +65,90 @@ export default function PhoneForm(props: FormProps) {
           },
         }}
         open={props.showmodal}
-        onClose={() => props.setshowmodal((prevstate) => !prevstate)}
       >
-        <DialogTitle>{loginclicked ? "Login" : "Sign Up"}</DialogTitle>
+        <DialogTitle
+          variant="h5"
+          style={{ fontWeight: "700", paddingBottom: "16px" }}
+        >
+          <Stack display="flex" direction="row" justifyContent="space-between">
+            {loginclicked ? "Login" : "Sign Up"}
+            <CloseIcon
+              style={{ cursor: "pointer" }}
+              onClick={() => props.setshowmodal((prevstate) => !prevstate)}
+            />
+          </Stack>
+          <Divider style={{ paddingTop: "6px" }} />
+        </DialogTitle>
 
         <DialogContent>
-          <form onSubmit={(e) => handlesubmit(e)}>
+          <form onSubmit={handleSubmit(handlesubmit)}>
             {loginclicked ? (
-              <LoginForm />
+              <LoginForm
+                SetOtp={props.SetOtp}
+                SetShowModal={props.setshowmodal}
+              />
             ) : (
               <Stack display="flex" direction="column" spacing={2}>
                 <Box>
                   <InputLabel>Name</InputLabel>
                   <InputBase
-                    onChange={handleSignUp("name")}
                     value={SignUpdetails.name}
                     style={inputstyle}
                     placeholder="Enter Your Name"
+                    {...register("name", {
+                      onChange: handleSignUp("name"),
+                      required: true,
+                      pattern: /^[A-Za-z0-9]*$/,
+                    })}
                   ></InputBase>
+                  {errors.name && errors.name.type === "required" && (
+                    <span className="error-message" style={{ color: "red" }}>
+                      This is required field
+                    </span>
+                  )}
+                  {errors.name && errors.name.type === "pattern" && (
+                    <span className="error-message" style={{ color: "red" }}>
+                      Enter a valid name
+                    </span>
+                  )}
                 </Box>
 
                 <Box>
                   <InputLabel>WhatsApp</InputLabel>
                   <InputBase
-                    onChange={handleSignUp("whatsapp")}
                     value={SignUpdetails.whatsapp}
                     style={inputstyle}
                     placeholder="Enter WhatsApp Number"
+                    {...register("whatsapp", {
+                      onChange: handleSignUp("whatsapp"),
+                      required: true,
+                      pattern: /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/,
+                    })}
                   ></InputBase>
+                  <Box>
+                    {errors.whatsapp && errors.whatsapp.type === "required" && (
+                      <span className="error-message" style={{ color: "red" }}>
+                        This is required field
+                      </span>
+                    )}
+                    {errors.whatsapp && errors.whatsapp.type === "pattern" && (
+                      <span className="error-message" style={{ color: "red" }}>
+                        Enter a valid number
+                      </span>
+                    )}
+                  </Box>
                 </Box>
 
                 <Box>
                   <InputLabel>Email</InputLabel>
                   <InputBase
-                    onChange={handleSignUp("email")}
+                    type="text"
                     value={SignUpdetails.email}
                     style={inputstyle}
                     placeholder="Enter Your Email"
+                    {...register("email", {
+                      onChange: handleSignUp("email"),
+                    })}
                   ></InputBase>
                 </Box>
                 <Button
