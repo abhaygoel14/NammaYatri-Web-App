@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const axios = require("axios");
 
-export default function SendOtp({ name, whatsapp, otp }: any) {
+export default function VerifyOtp({ name, whatsapp, otp }: any) {
   const API_URL = "https://graph.facebook.com/v16.0/113752511701692/messages";
   const AUTH_TOKEN = process.env.NEXT_PUBLIC_AUTH_WHATSAPP_TOKEN;
   console.log("phone", whatsapp);

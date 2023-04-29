@@ -23,7 +23,15 @@ function Otp(props: FormProps) {
     setotp(newValue);
   };
   const handleotp = () => {
-    console.log(otp);
+    const verifyOtp = localStorage.getItem("otp");
+    if (verifyOtp === otp.toString()) {
+      localStorage.setItem("isLoggedIn", "true");
+      console.log("Logged in successfully");
+      props.setshow(false);
+    } else {
+      console.log("Failed to Log In");
+    }
+    window.location.reload();
   };
 
   const isLarge = useIsLargeView({ breakpoint: 786 });

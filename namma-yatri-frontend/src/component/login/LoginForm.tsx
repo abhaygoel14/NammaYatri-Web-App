@@ -87,14 +87,14 @@ function LoginForm({ SetShowModal, SetOtp }: ChildProps) {
           ></InputBase>
           <Box>
             {errors.whatsapp && errors.whatsapp.type === "required" && (
-              <span className="error-message" style={{ color: "red" }}>
+              <Typography className="error-message" style={{ color: "red" }}>
                 This is required field
-              </span>
+              </Typography>
             )}
             {errors.whatsapp && errors.whatsapp.type === "pattern" && (
-              <span className="error-message" style={{ color: "red" }}>
+              <Typography className="error-message" style={{ color: "red" }}>
                 Enter a valid number
-              </span>
+              </Typography>
             )}
           </Box>
         </Box>

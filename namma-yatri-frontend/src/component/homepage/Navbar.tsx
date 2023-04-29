@@ -4,7 +4,7 @@ import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PhoneForm from "../login/PhoneForm";
 import MenuIcon from "@mui/icons-material/Menu";
 import MobileSignUp from "../login/MobileSignUp";
@@ -25,15 +25,27 @@ export default function Navbar() {
   const [showotp, setshowotp] = useState(false);
   const [isdrop, setisdrop] = useState(false);
   const [showmodel, setshowmodel] = useState(false);
+  const [showLogin, setShowLogin] = useState("Login/ Sign Up");
   const [SignUpdetails, setSignUpdetails] = useState({
     name: "",
     whatsapp: "",
     email: "",
   });
-
   const showHamBg = () => {
     setisdrop(!isdrop);
   };
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    if (isLoggedIn) {
+      setShowLogin("Logout");
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setShowLogin("Login/Sign Up");
+  };
+
   return (
     <>
       <Box sx={{ background: "black" }}>
@@ -74,7 +86,9 @@ export default function Navbar() {
               </Link>
               {!isLarge && (
                 <Button
-                  onClick={() => setshowmodel(!showmodel)}
+                  onClick={() => {
+                    setshowmodel(!showmodel);
+                  }}
                   sx={{
                     background: "rgb(252 195 44 / 1)",
                     color: "#2a2a2a",
@@ -88,7 +102,7 @@ export default function Navbar() {
                   }}
                 >
                   <Typography fontSize={12} fontWeight={600}>
-                    Login/Sign up
+                    {showLogin}
                   </Typography>
                 </Button>
               )}
@@ -135,7 +149,14 @@ export default function Navbar() {
             </Link>
 
             <Button
-              onClick={() => setshowmodel(true)}
+              onClick={() => {
+                if (showLogin === "Logout") {
+                  handleLogout();
+                  setshowmodel(false);
+                } else {
+                  setshowmodel(true);
+                }
+              }}
               sx={{
                 background: "rgb(252 195 44 / 1)",
                 color: "#2a2a2a",
@@ -147,7 +168,7 @@ export default function Navbar() {
               }}
             >
               <Typography fontSize={16} fontWeight={600}>
-                Login/Sign up
+                {showLogin}
               </Typography>
             </Button>
           </Box>

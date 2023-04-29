@@ -16,8 +16,8 @@ import * as React from "react";
 import { useState } from "react";
 import LoginForm from "./LoginForm";
 import { useForm } from "react-hook-form";
-const textColor = `opacity: 1;
-color: rgb(244 244 246 / var(opacity));`;
+import SendOtp from "@/api/WhatsappApiCall";
+import generateOtp from "@/utils/generateOtp";
 
 interface FormProps {
   showmodal: boolean;
@@ -52,7 +52,13 @@ export default function PhoneForm(props: FormProps) {
     props.SetOtp(true);
     props.setshowmodal(!props.showmodal);
     console.log(data);
+    const { name, whatsapp, email } = SignUpdetails;
+    const otp = generateOtp();
+    localStorage.setItem("name", name);
+    localStorage.setItem("otp", otp.toString());
+    SendOtp({ name, whatsapp, otp });
   };
+
   return (
     <>
       <Dialog
@@ -102,14 +108,20 @@ export default function PhoneForm(props: FormProps) {
                     })}
                   ></InputBase>
                   {errors.name && errors.name.type === "required" && (
-                    <span className="error-message" style={{ color: "red" }}>
+                    <Typography
+                      className="error-message"
+                      style={{ color: "red" }}
+                    >
                       This is required field
-                    </span>
+                    </Typography>
                   )}
                   {errors.name && errors.name.type === "pattern" && (
-                    <span className="error-message" style={{ color: "red" }}>
+                    <Typography
+                      className="error-message"
+                      style={{ color: "red" }}
+                    >
                       Enter a valid name
-                    </span>
+                    </Typography>
                   )}
                 </Box>
 
@@ -127,14 +139,20 @@ export default function PhoneForm(props: FormProps) {
                   ></InputBase>
                   <Box>
                     {errors.whatsapp && errors.whatsapp.type === "required" && (
-                      <span className="error-message" style={{ color: "red" }}>
+                      <Typography
+                        className="error-message"
+                        style={{ color: "red" }}
+                      >
                         This is required field
-                      </span>
+                      </Typography>
                     )}
                     {errors.whatsapp && errors.whatsapp.type === "pattern" && (
-                      <span className="error-message" style={{ color: "red" }}>
+                      <Typography
+                        className="error-message"
+                        style={{ color: "red" }}
+                      >
                         Enter a valid number
-                      </span>
+                      </Typography>
                     )}
                   </Box>
                 </Box>
