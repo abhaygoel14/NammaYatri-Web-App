@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 const NavbarComponent = dynamic(() => import("@/component/homepage/Navbar"));
 
 export default function Login() {
-  const isLarge = useIsLargeView(786);
+  const isLarge = useIsLargeView();
   const [loginPopUp, setLoginPopup] = useState(true);
   const handleModalClose = useCallback(() => {
     setLoginPopup(false);
