@@ -3,11 +3,6 @@ import React, { useState } from "react";
 import Location from "./Location";
 
 function MobileLocation() {
-  const [location, setLocation] = useState({ pickup: "", destination: "" });
-
-  const handleLocation = (name: string) => (e: any) => {
-    setLocation({ ...location, [name]: e.target.value });
-  };
   const Container = styled(Box)`
     position: fixed;
     bottom: 0;
@@ -17,7 +12,7 @@ function MobileLocation() {
   return (
     <>
       <Container>
-        <Location setLocation={setLocation} handleLocation={handleLocation} />
+        <Location />
       </Container>
     </>
   );

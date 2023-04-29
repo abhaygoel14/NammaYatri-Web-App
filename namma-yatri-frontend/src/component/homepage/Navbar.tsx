@@ -1,6 +1,6 @@
 import useIsLargeView from "@/utils/useIsLarge";
 import styled from "@emotion/styled";
-import { Box, Button, Typography } from "@mui/material";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
@@ -20,7 +20,7 @@ const StyledTypography = styled(Typography)`
 `;
 
 export default function Navbar() {
-  const isLarge = useIsLargeView({ breakpoint: 786 });
+  const isLarge = useIsLargeView();
   const [showotp, setshowotp] = useState(false);
   const [isdrop, setisdrop] = useState(false);
   const [showmodel, setshowmodel] = useState(false);
@@ -36,6 +36,7 @@ export default function Navbar() {
     }
   }, []);
 
+  const user = localStorage.getItem("name")?.toUpperCase();
   const handleLogout = () => {
     localStorage.clear();
     setShowLogin("Login/Sign Up");
@@ -79,35 +80,46 @@ export default function Navbar() {
                   }}
                 />
               </Link>
-              {!isLarge && (
-                <Button
-                  onClick={() => {
-                    if (showLogin === "Logout") {
-                      handleLogout();
-                      setshowmodel(false);
-                    } else {
-                      setshowmodel(true);
-                    }
-                  }}
-                  sx={{
-                    background: "rgb(252 195 44 / 1)",
-                    color: "#2a2a2a",
-                    marginLeft: "auto",
-                    marginRight: "1rem",
-                    display: isLarge ? "none" : "block",
-                    "&:hover": {
-                      background: "rgb(252 195 44 / 1)",
-                      color: "black",
-                    },
-                  }}
+              {showLogin == "Logout" && (
+                <Typography
+                  style={{ marginLeft: "auto" }}
+                  variant="subtitle1"
+                  fontWeight="700"
                 >
-                  <Typography fontSize={12} fontWeight={600}>
-                    {showLogin}
-                  </Typography>
-                </Button>
+                  Hi, Nandan
+                </Typography>
+              )}
+              {!isLarge && (
+                <>
+                  <Button
+                    onClick={() => {
+                      if (showLogin === "Logout") {
+                        handleLogout();
+                        setshowmodel(false);
+                      } else {
+                        setshowmodel(true);
+                      }
+                    }}
+                    sx={{
+                      background: "rgb(252 195 44 / 1)",
+                      color: "#2a2a2a",
+                      marginLeft: "auto",
+                      marginRight: "1rem",
+                      display: isLarge ? "none" : "block",
+                      "&:hover": {
+                        background: "rgb(252 195 44 / 1)",
+                        color: "black",
+                      },
+                    }}
+                  >
+                    <Typography fontSize={12} fontWeight={600}>
+                      {showLogin}
+                    </Typography>
+                  </Button>
+                </>
               )}
               <Box onClick={showHamBg} style={{ cursor: "pointer" }}>
-                <MenuIcon sx={{ color: "white" }} />
+                <Avatar>{user?.charAt(0)}</Avatar>
               </Box>
             </Box>
           )}
@@ -121,7 +133,7 @@ export default function Navbar() {
               flexWrap: "wrap",
               justifyContent: "space-between",
               alignItems: isLarge ? "center" : "start",
-              height: isLarge ? null : isdrop ? "14vh" : "0vh",
+              height: isLarge ? null : isdrop ? "" : "0vh",
               gap: isLarge ? "26px" : "8px",
             }}
           >
@@ -171,10 +183,13 @@ export default function Navbar() {
                 {showLogin}
               </Typography>
             </Button>
+
+            {showLogin === "Logout" && isLarge && (
+              <Avatar>{user?.charAt(0)}</Avatar>
+            )}
           </Box>
         </Box>
       </Box>
-
       {showmodel && (
         <PhoneForm
           SetOtp={setshowotp}

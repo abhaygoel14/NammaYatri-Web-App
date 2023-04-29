@@ -1,7 +1,8 @@
 import React from "react";
 import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
-import driver from "@/assets/driverOnboard.png";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import Link from "next/link";
 function AutoWala() {
   return (
     <>
@@ -28,40 +29,61 @@ function AutoWala() {
             </Typography>
             <Typography variant="body2">9535596139</Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <Box
+            sx={{
+              display: "flex",
+              marginTop: "8px",
+              alignItems: "center",
+              gap: "1rem",
+            }}
+          >
             <Button
               style={{ background: "rgb(252 195 44 / 1)", color: "black" }}
               variant="contained"
             >
+              <WhatsAppIcon sx={{ marginRight: "4px" }} />
               Call
             </Button>
             <Button
               style={{ background: "rgb(252 195 44 / 1)", color: "black" }}
               variant="contained"
             >
+              <WhatsAppIcon sx={{ marginRight: "4px" }} />
               Message
             </Button>
           </Box>
-          <Box sx={{ display: "flex", gap: ".3rem", alignSelf: "center" }}>
-            <Typography
-              sx={{ opacity: ".5", textAlign: "center", fontSize: "14px" }}
-            >
-              Need Help?
-            </Typography>
-            <Typography
-              sx={{
-                opacity: ".5",
-                cursor: "pointer",
-                textAlign: "center",
-                textDecoration: "underline",
-                fontSize: "14px",
-              }}
-            >
-              Click here
-            </Typography>
-          </Box>
         </Stack>
       </Stack>
+
+      <Box
+        sx={{
+          display: "flex",
+          gap: ".3rem",
+          alignSelf: "center",
+          justifyContent: "center",
+          paddingTop: "1rem",
+        }}
+      >
+        <Typography
+          sx={{ opacity: ".5", textAlign: "center", fontSize: "14px" }}
+        >
+          Need Help?
+        </Typography>
+        <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
+          <Typography
+            sx={{
+              color: "blue",
+              opacity: "1",
+              cursor: "pointer",
+              textAlign: "center",
+              textDecoration: "underline",
+              fontSize: "14px",
+            }}
+          >
+            Click here
+          </Typography>
+        </Link>
+      </Box>
     </>
   );
 }

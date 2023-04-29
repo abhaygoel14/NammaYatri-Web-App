@@ -11,7 +11,7 @@ const MobileLocationComponent = dynamic(
 );
 
 export default function Home() {
-  const isLarge = useIsLargeView({ breakpoint: 786 });
+  const isLarge = useIsLargeView();
   return (
     <>
       <NavbarComponent />

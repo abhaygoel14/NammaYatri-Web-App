@@ -34,7 +34,7 @@ function Otp(props: FormProps) {
   ) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-  const isLarge = useIsLargeView({ breakpoint: 786 });
+  const isLarge = useIsLargeView();
 
   const handleCloseToast = (
     event?: React.SyntheticEvent | Event,
@@ -156,7 +156,7 @@ function Otp(props: FormProps) {
         <Box mt={"50px"}>
           <Snackbar
             open={showToast}
-            autoHideDuration={9000}
+            autoHideDuration={6000}
             onClose={handleCloseToast}
             anchorOrigin={{ vertical: "top", horizontal: "center" }}
             sx={{ minWidth: "100%" }}

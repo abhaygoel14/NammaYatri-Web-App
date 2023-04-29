@@ -22,7 +22,7 @@ interface FormProps {
   SetOtp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function PhoneForm(props: FormProps) {
-  const isLarge = useIsLargeView({ breakpoint: 786 });
+  const isLarge = useIsLargeView();
   const [loginClicked, setloginClicked] = useState(false);
 
   return (
@@ -73,15 +73,16 @@ export default function PhoneForm(props: FormProps) {
               </Typography>
               <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
                 <Typography
-                  variant="body2"
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "700",
-                    color: "rgba(0, 0, 0, 0.6)",
+                  sx={{
+                    color: "blue",
+                    opacity: "1",
                     cursor: "pointer",
+                    textAlign: "center",
+                    textDecoration: "underline",
+                    fontSize: "14px",
                   }}
                 >
-                  Click Here
+                  Click here
                 </Typography>
               </Link>
             </Box>

@@ -12,12 +12,12 @@ function Booking() {
   const now = new Date();
   hour = now.getHours().toString();
   minute = now.getMinutes().toString();
-  const isLarge = useIsLargeView({ breakpoint: 786 });
+  const isLarge = useIsLargeView();
   return (
     <>
       {!confirmed ? (
         <Box style={{ position: "relative" }}>
-          <Box sx={{ overflowY: "scroll", height: "240px" }}>
+          <Box>
             <Stack
               display="flex"
               direction="row"
@@ -32,7 +32,11 @@ function Booking() {
                   alt=""
                 ></Image>
               </Box>
-              <Stack display="flex" pt={2} style={{ height: "min-content" }}>
+              <Stack
+                display="flex"
+                pt={2}
+                style={{ height: "min-content", marginRight: "1rem" }}
+              >
                 <Typography variant="subtitle1" fontWeight="700">
                   Namma Yatri Auto
                 </Typography>
@@ -78,9 +82,9 @@ function Booking() {
               <Button
                 onClick={() => setConfirmed(!confirmed)}
                 style={{
-                  background: "black",
                   width: "100%",
-                  position: "absolute",
+                  background: "rgb(252 195 44)",
+                  color: "black",
                 }}
                 variant="contained"
               >
@@ -92,9 +96,10 @@ function Booking() {
             <Button
               onClick={() => setConfirmed(!confirmed)}
               style={{
-                background: "black",
                 width: "100%",
                 position: "absolute",
+                background: "rgb(252 195 44)",
+                color: "black",
               }}
               variant="contained"
             >

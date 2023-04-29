@@ -61,7 +61,7 @@ function SignUp(props: FormProps) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const isLarge = useIsLargeView({ breakpoint: 786 });
+  const isLarge = useIsLargeView();
 
   const handleCloseToast = (
     event?: React.SyntheticEvent | Event,
