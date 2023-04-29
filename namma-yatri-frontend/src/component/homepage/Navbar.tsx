@@ -7,7 +7,6 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import PhoneForm from "../login/PhoneForm";
 import MenuIcon from "@mui/icons-material/Menu";
-import MobileSignUp from "../login/MobileSignUp";
 import Otp from "../login/Otp";
 
 const textColor = `opacity: 1;
@@ -26,11 +25,7 @@ export default function Navbar() {
   const [isdrop, setisdrop] = useState(false);
   const [showmodel, setshowmodel] = useState(false);
   const [showLogin, setShowLogin] = useState("Login/ Sign Up");
-  const [SignUpdetails, setSignUpdetails] = useState({
-    name: "",
-    whatsapp: "",
-    email: "",
-  });
+
   const showHamBg = () => {
     setisdrop(!isdrop);
   };
@@ -87,7 +82,12 @@ export default function Navbar() {
               {!isLarge && (
                 <Button
                   onClick={() => {
-                    setshowmodel(!showmodel);
+                    if (showLogin === "Logout") {
+                      handleLogout();
+                      setshowmodel(false);
+                    } else {
+                      setshowmodel(true);
+                    }
                   }}
                   sx={{
                     background: "rgb(252 195 44 / 1)",
@@ -175,25 +175,13 @@ export default function Navbar() {
         </Box>
       </Box>
 
-      {isLarge
-        ? showmodel && (
-            <PhoneForm
-              SetOtp={setshowotp}
-              setshowmodal={setshowmodel}
-              showmodal={showmodel}
-            />
-          )
-        : showmodel && (
-            <>
-              <MobileSignUp
-                SetOtp={setshowotp}
-                signup={SignUpdetails}
-                setshowmodal={setshowmodel}
-                showmodal={showmodel}
-                setsignup={setSignUpdetails}
-              />
-            </>
-          )}
+      {showmodel && (
+        <PhoneForm
+          SetOtp={setshowotp}
+          setshowmodal={setshowmodel}
+          showmodal={showmodel}
+        />
+      )}
       {showotp && <Otp show={showotp} setshow={setshowotp} />}
     </>
   );

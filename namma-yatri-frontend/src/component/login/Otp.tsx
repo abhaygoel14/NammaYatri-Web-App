@@ -10,6 +10,7 @@ import {
   Divider,
   Button,
   Stack,
+  Drawer,
 } from "@mui/material";
 import useIsLargeView from "@/utils/useIsLarge";
 
@@ -37,36 +38,75 @@ function Otp(props: FormProps) {
   const isLarge = useIsLargeView({ breakpoint: 786 });
   return (
     <>
-      <Dialog
-        sx={{
-          "& .MuiDialog-container": {
-            "& .MuiPaper-root": {
-              width: isLarge ? "70%" : "60%",
-              maxWidth: "500px",
+      {isLarge ? (
+        <Dialog
+          sx={{
+            "& .MuiDialog-container": {
+              "& .MuiPaper-root": {
+                width: isLarge ? "70%" : "60%",
+                maxWidth: "500px",
+              },
             },
-          },
-        }}
-        open={props.show}
-      >
-        <DialogContent>
-          <DialogTitle>
-            <Stack
-              display="flex"
-              direction="row"
-              justifyContent="space-between"
-            >
-              <Typography style={{ fontWeight: "700", paddingBottom: "16px" }}>
-                Enter OTP
-              </Typography>
-              <CloseIcon
-                style={{ cursor: "pointer" }}
-                onClick={() => props.setshow((prevstate) => !prevstate)}
+          }}
+          open={props.show}
+        >
+          <DialogContent>
+            <DialogTitle>
+              <Stack
+                display="flex"
+                direction="row"
+                justifyContent="space-between"
+              >
+                <Typography
+                  style={{ fontWeight: "700", paddingBottom: "16px" }}
+                >
+                  Enter OTP
+                </Typography>
+                <CloseIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => props.setshow((prevstate) => !prevstate)}
+                />
+              </Stack>
+
+              <Divider style={{ paddingTop: "6px" }} />
+            </DialogTitle>
+
+            <Stack display="flex" spacing={2} p={2}>
+              <MuiOtpInput
+                // style={{width:"88%", justifySelf:"center"}}
+                length={5}
+                value={otp}
+                onChange={handleChange}
               />
+
+              <Button
+                onClick={handleotp}
+                type="submit"
+                style={{ background: "rgb(252 195 44 / 1)", color: "black" }}
+                variant="contained"
+              >
+                Submit
+              </Button>
             </Stack>
-
-            <Divider style={{ paddingTop: "6px" }} />
-          </DialogTitle>
-
+          </DialogContent>
+        </Dialog>
+      ) : (
+        <Drawer anchor="bottom" open={props.show}>
+          <Stack
+            display="flex"
+            direction="row"
+            justifyContent="space-between"
+            style={{ padding: "16px 8px 0 8px" }}
+          >
+            <Typography style={{ fontWeight: "700", paddingBottom: "16px" }}>
+              Enter OTP
+            </Typography>
+            <CloseIcon
+              style={{ cursor: "pointer" }}
+              onClick={() => props.setshow((prevstate) => !prevstate)}
+            />
+          </Stack>
+          <Divider style={{ paddingTop: "6px" }} />
           <Stack display="flex" spacing={2} p={2}>
             <MuiOtpInput
               // style={{width:"88%", justifySelf:"center"}}
@@ -84,8 +124,8 @@ function Otp(props: FormProps) {
               Submit
             </Button>
           </Stack>
-        </DialogContent>
-      </Dialog>
+        </Drawer>
+      )}
     </>
   );
 }
