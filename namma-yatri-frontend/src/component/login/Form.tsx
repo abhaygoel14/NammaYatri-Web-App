@@ -8,13 +8,14 @@ import {
   Button,
   Divider,
   Snackbar,
-  Alert,
+  Checkbox,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CloseIcon from "@mui/icons-material/Close";
 import useIsLargeView from "@/utils/useIsLarge";
 import generateOtp from "@/utils/generateOtp";
 import SendOtp from "@/api/WhatsappApiCall";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
 interface FormProps {
   showmodal: boolean;
@@ -49,7 +50,12 @@ function SignUp(props: FormProps) {
     props.setshowmodal(false);
     props.SetOtp(true);
   };
-
+  const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref
+  ) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
   const {
     register,
     handleSubmit,
@@ -84,6 +90,25 @@ function SignUp(props: FormProps) {
 
   return (
     <>
+      {showToast && (
+        <Box mt={"50px"}>
+          <Snackbar
+            open={showToast}
+            autoHideDuration={9000}
+            onClose={handleCloseToast}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            sx={{ minWidth: "100%" }}
+          >
+            <Alert
+              onClose={handleCloseToast}
+              severity="success"
+              sx={{ width: isLarge ? "30%" : "80%" }}
+            >
+              OTP send successfully
+            </Alert>
+          </Snackbar>
+        </Box>
+      )}
       {props.loginclicked ? (
         <form onSubmit={handleSubmit(handlesubmit)}>
           <Stack
@@ -116,6 +141,7 @@ function SignUp(props: FormProps) {
 
             <Box>
               <InputLabel>WhatsApp</InputLabel>
+              <Checkbox />
               <InputBase
                 value={logindetails.whatsapp}
                 style={inputstyle}
@@ -237,27 +263,14 @@ function SignUp(props: FormProps) {
               type="submit"
               style={{ background: "rgb(252 195 44 / 1)", color: "black" }}
               variant="contained"
+              disabled={
+                SignUpdetails.name === "" || SignUpdetails.whatsapp === ""
+              }
             >
               SignUp
             </Button>
           </Stack>
         </form>
-      )}
-
-      {showToast && (
-        <Snackbar
-          open={showToast}
-          autoHideDuration={6000}
-          onClose={handleCloseToast}
-        >
-          <Alert
-            onClose={handleCloseToast}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
-            This is a success message!
-          </Alert>
-        </Snackbar>
       )}
     </>
   );

@@ -11,8 +11,11 @@ import {
   Button,
   Stack,
   Drawer,
+  Snackbar,
+  Box,
 } from "@mui/material";
 import useIsLargeView from "@/utils/useIsLarge";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
 interface FormProps {
   show: boolean;
@@ -20,22 +23,45 @@ interface FormProps {
 }
 function Otp(props: FormProps) {
   const [otp, setotp] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [errorOtp, setErrorOtp] = useState(false);
   const handleChange = (newValue: any) => {
     setotp(newValue);
+  };
+  const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref
+  ) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+  const isLarge = useIsLargeView({ breakpoint: 786 });
+
+  const handleCloseToast = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowToast(false);
   };
   const handleotp = () => {
     const verifyOtp = localStorage.getItem("otp");
     if (verifyOtp === otp.toString()) {
       localStorage.setItem("isLoggedIn", "true");
-      console.log("Logged in successfully");
       props.setshow(false);
+      setErrorOtp(false);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+      setShowToast(true);
     } else {
-      console.log("Failed to Log In");
+      setErrorOtp(true);
     }
-    window.location.reload();
+    setShowToast(true);
   };
 
-  const isLarge = useIsLargeView({ breakpoint: 786 });
   return (
     <>
       {isLarge ? (
@@ -125,6 +151,25 @@ function Otp(props: FormProps) {
             </Button>
           </Stack>
         </Drawer>
+      )}
+      {showToast && (
+        <Box mt={"50px"}>
+          <Snackbar
+            open={showToast}
+            autoHideDuration={9000}
+            onClose={handleCloseToast}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            sx={{ minWidth: "100%" }}
+          >
+            <Alert
+              onClose={handleCloseToast}
+              severity={errorOtp ? "error" : "success"}
+              sx={{ width: isLarge ? "30%" : "80%" }}
+            >
+              {errorOtp ? "Wrong OTP ! Please try again" : "Login Successful!"}
+            </Alert>
+          </Snackbar>
+        </Box>
       )}
     </>
   );

@@ -14,6 +14,7 @@ import * as React from "react";
 import { useState } from "react";
 
 import Form from "./Form";
+import Link from "next/link";
 
 interface FormProps {
   showmodal: boolean;
@@ -68,20 +69,21 @@ export default function PhoneForm(props: FormProps) {
                 variant="body2"
                 style={{ textAlign: "center", color: "rgba(0, 0, 0, 0.6)" }}
               >
-                {loginClicked ? "New Customer" : "Already an User? Just"}{" "}
+                Verify your Whatsapp Number?
               </Typography>
-              <Typography
-                onClick={() => setloginClicked(!loginClicked)}
-                variant="body2"
-                style={{
-                  textAlign: "center",
-                  fontWeight: "700",
-                  color: "rgba(0, 0, 0, 0.6)",
-                  cursor: "pointer",
-                }}
-              >
-                {loginClicked ? "Sign Up" : "Login"}{" "}
-              </Typography>
+              <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
+                <Typography
+                  variant="body2"
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "700",
+                    color: "rgba(0, 0, 0, 0.6)",
+                    cursor: "pointer",
+                  }}
+                >
+                  Click Here
+                </Typography>
+              </Link>
             </Box>
           </DialogContent>
         </Dialog>
@@ -120,24 +122,25 @@ export default function PhoneForm(props: FormProps) {
               variant="body2"
               style={{ textAlign: "center", color: "rgba(0, 0, 0, 0.6)" }}
             >
-              {loginClicked ? "New Customer?" : "Already an User? Just"}{" "}
+              Already an User?
             </Typography>
-            <Typography
-              onClick={() => setloginClicked(!loginClicked)}
-              variant="body2"
-              style={{
-                textAlign: "center",
-                fontWeight: "700",
-                color: "rgba(0, 0, 0, 0.6)",
-                cursor: "pointer",
-              }}
-            >
-              {loginClicked ? "Sign Up" : "Login"}{" "}
-            </Typography>
+            <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
+              <Typography
+                onClick={() => setloginClicked(!loginClicked)}
+                variant="body2"
+                style={{
+                  textAlign: "center",
+                  fontWeight: "700",
+                  color: "rgba(0, 0, 0, 0.6)",
+                  cursor: "pointer",
+                }}
+              >
+                Click Here
+              </Typography>
+            </Link>
           </Box>
         </Drawer>
       )}
-          
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { GOOGLE_API_KEY } from "../const/api";
+import useLiveCity from "../const/useLiveCity";
 
 export default function Places() {
   const { isLoaded } = useLoadScript({
@@ -13,7 +14,12 @@ export default function Places() {
 }
 
 function Map() {
-  const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
+  const livecity = useLiveCity();
+  console.log("Map", JSON.stringify(livecity));
+  const center = useMemo(
+    () => ({ lat: livecity.latitude, lng: livecity.longitude }),
+    [livecity.latitude, livecity.longitude]
+  );
 
   return (
     <>

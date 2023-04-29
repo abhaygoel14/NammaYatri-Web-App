@@ -9,11 +9,9 @@ function Booking() {
   const [confirmed, setConfirmed] = useState(false);
   let hour = "",
     minute = "";
-  useEffect(() => {
-    const now = new Date();
-    hour = now.getHours().toString();
-    minute = now.getMinutes().toString();
-  });
+  const now = new Date();
+  hour = now.getHours().toString();
+  minute = now.getMinutes().toString();
   const isLarge = useIsLargeView({ breakpoint: 786 });
   return (
     <>
@@ -39,7 +37,7 @@ function Booking() {
                   Namma Yatri Auto
                 </Typography>
                 <Typography variant="body2">
-                  12{hour}:14{minute} 14min away
+                  {hour}:{minute} 14min away
                 </Typography>
               </Stack>
 
@@ -67,7 +65,7 @@ function Booking() {
                   Namma Yatri Go
                 </Typography>
                 <Typography variant="body2">
-                  12{hour}:14{minute} 14min away
+                  {hour}:{minute} 14min away
                 </Typography>
               </Stack>
 
