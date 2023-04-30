@@ -15,5 +15,7 @@ npm run build
 yarn run build
 ```
 
+Live Link :  [https://namayatri-web-app.com](https://namma-yatri-blue.vercel.app/homepage)
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
