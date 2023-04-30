@@ -57,7 +57,7 @@ function Otp(props: FormProps) {
       setErrorOtp(false);
       setTimeout(() => {
         window.location.reload();
-      }, 3000);
+      }, 1000);
       setShowToast(true);
     } else {
       setErrorOtp(true);

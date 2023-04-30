@@ -38,6 +38,7 @@ export default function Navbar() {
   const user = localStorage.getItem("name");
   const handleLogout = () => {
     localStorage.clear();
+    window.location.reload();
     setShowLogin("Login/Sign Up");
   };
 
