@@ -48,7 +48,7 @@ export default function PhoneForm(props: FormProps) {
               direction="row"
               justifyContent="space-between"
             >
-              SignUp
+              Login to Namma Yatri
               <CloseIcon
                 style={{ cursor: "pointer" }}
                 onClick={() => props.setshowmodal((prevstate) => !prevstate)}

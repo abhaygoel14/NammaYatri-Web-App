@@ -107,7 +107,7 @@ function SignUp(props: FormProps) {
           spacing={2}
         >
           <Box>
-            <InputLabel>Name</InputLabel>
+            <InputLabel>Name*</InputLabel>
             <InputBase
               value={SignUpdetails.name}
               style={inputstyle}
@@ -131,10 +131,13 @@ function SignUp(props: FormProps) {
           </Box>
 
           <Box>
-            <InputLabel>WhatsApp</InputLabel>
+            <InputLabel>WhatsApp(+91)*</InputLabel>
             <InputBase
               value={SignUpdetails.whatsapp}
               style={inputstyle}
+              inputProps={{
+                maxLength: 10,
+              }}
               placeholder="Enter WhatsApp Number"
               {...register("whatsapp", {
                 onChange: handleSignUp("whatsapp"),
@@ -150,7 +153,7 @@ function SignUp(props: FormProps) {
               )}
               {errors.whatsapp && errors.whatsapp.type === "pattern" && (
                 <Typography className="error-message" style={{ color: "red" }}>
-                  Enter a valid number
+                  Enter a 10 digit valid number
                 </Typography>
               )}
             </Box>

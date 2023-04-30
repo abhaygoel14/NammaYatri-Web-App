@@ -145,7 +145,11 @@ function Location() {
                         minWidth: "80%",
                         zIndex: "100",
                         overflowY: "scroll",
-                        maxHeight: "20vh",
+                        maxHeight: isLarge
+                          ? "20vh"
+                          : window.innerHeight > 800
+                          ? "14vh"
+                          : "20vh",
                       }}
                     >
                       {fetchedData.map((res, i) => {
@@ -207,7 +211,11 @@ function Location() {
                         bottom: "-121px",
                         padding: ".5rem",
                         minWidth: "80%",
-                        maxHeight: "20vh",
+                        maxHeight: isLarge
+                          ? "20vh"
+                          : window.innerHeight > 800
+                          ? "14vh"
+                          : "20vh",
                         zIndex: "100",
                         overflowY: "scroll",
                       }}
