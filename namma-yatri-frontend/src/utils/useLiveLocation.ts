@@ -11,7 +11,7 @@ export default function useLiveLocation() {
   }, []);
   const getLocationJs = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
+      // console.log(position);
       const { latitude, longitude } = position.coords;
       setCurrLocationJs({ latitude, longitude });
     });

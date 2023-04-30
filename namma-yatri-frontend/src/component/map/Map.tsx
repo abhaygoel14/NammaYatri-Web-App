@@ -15,7 +15,7 @@ export default function Places() {
 
 function Map() {
   const livecity = useLiveCity();
-  console.log("Map", JSON.stringify(livecity));
+  // console.log("Map", JSON.stringify(livecity));
   const center = useMemo(
     () => ({ lat: livecity.latitude, lng: livecity.longitude }),
     [livecity.latitude, livecity.longitude]

@@ -76,13 +76,13 @@ function Location() {
     }
     const fetchData = async () => {
       const response = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${inputValue}&key=${process.env.NEXT_PUBLIC_AUTOCOMPLETE_API_KEY}&autocomplete=1`
+        `https://api.opencagedata.com/geocode/v1/json?q=${inputValue}&key=41bf89752dde4d2fa4e5f32767b4eb61&autocomplete=1`
       );
       const data = await response.json();
       setFetchedData(data.results);
     };
     fetchData();
-  }, []);
+  }, [location]);
 
   return (
     <>

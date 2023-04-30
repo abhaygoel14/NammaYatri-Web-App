@@ -17,7 +17,7 @@ function useLiveCity() {
               `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
             );
             const data = await response.json();
-            console.log(data);
+            //console.log(data);
             setCity(
               data.address.city ||
                 data.address.town ||

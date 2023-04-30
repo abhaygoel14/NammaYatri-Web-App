@@ -16,7 +16,7 @@ export default function VerifyOtp({ name, whatsapp, otp }: any) {
         access_token: AUTH_TOKEN,
       });
 
-      console.log("hi", response.data);
+      // console.log("hi", response.data);
     } catch (error: any) {
       console.error(error.response.data);
     }
