@@ -58,7 +58,7 @@ function AutoWala(props: FormProps) {
               <Typography variant="subtitle1" fontWeight="600">
                 Ph.No:
               </Typography>
-              <Typography variant="body2">9535596139</Typography>
+              <Typography variant="body1">XXXXX96139</Typography>
             </Box>
             <Box
               sx={{
