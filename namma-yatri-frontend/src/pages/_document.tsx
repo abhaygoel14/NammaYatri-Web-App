@@ -13,7 +13,6 @@ export default function Document() {
           property="og:image"
           content="https://nammayatri.in/logos/nammaYatrilogo.svg"
         />
-        <title>Namma Yatri</title>
       </Head>
       <body>
         <Main />
