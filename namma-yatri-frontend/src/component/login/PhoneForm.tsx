@@ -14,6 +14,7 @@ import * as React from "react";
 import WarningIcon from "@mui/icons-material/Warning";
 import Form from "./Form";
 import Link from "next/link";
+import { WHATSAPP_GET_HELP_LINK, WHATSAPP_GET_VERIFY_LINK } from "../const/api";
 
 interface FormProps {
   showmodal: boolean;
@@ -59,9 +60,29 @@ export default function PhoneForm(props: FormProps) {
               <WarningIcon />
               <Typography
                 variant="body2"
-                style={{ alignSelf: "end", color: "rgba(0, 0, 0, 0.6)" }}
+                sx={{
+                  alignSelf: "end",
+                  fontWeight: "700",
+                  color: "red",
+                  display: "flex",
+                  gap: "4px",
+                }}
               >
                 Please verify your WhatsApp number
+                <Link href={WHATSAPP_GET_VERIFY_LINK} target="_blank">
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "700",
+                      color: "blue",
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
+                  >
+                    Click Here
+                  </Typography>
+                </Link>
               </Typography>
             </Box>
           </DialogTitle>
@@ -77,9 +98,9 @@ export default function PhoneForm(props: FormProps) {
                 variant="body2"
                 style={{ textAlign: "center", color: "rgba(0, 0, 0, 0.6)" }}
               >
-                Verify your Whatsapp Number?
+                Need Help?
               </Typography>
-              <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
+              <Link href={WHATSAPP_GET_HELP_LINK} target="_blank">
                 <Typography
                   sx={{
                     color: "blue",
@@ -122,9 +143,29 @@ export default function PhoneForm(props: FormProps) {
               <WarningIcon />
               <Typography
                 variant="body2"
-                style={{ alignSelf: "end", color: "rgba(0, 0, 0, 0.6)" }}
+                sx={{
+                  alignSelf: "end",
+                  fontWeight: "700",
+                  color: "red",
+                  display: "flex",
+                  gap: "4px",
+                }}
               >
                 Please verify your WhatsApp number
+                <Link href={WHATSAPP_GET_VERIFY_LINK}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "700",
+                      color: "blue",
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
+                  >
+                    Click Here
+                  </Typography>
+                </Link>
               </Typography>
             </Box>
           </Stack>
@@ -139,16 +180,17 @@ export default function PhoneForm(props: FormProps) {
               variant="body2"
               style={{ textAlign: "center", color: "rgba(0, 0, 0, 0.6)" }}
             >
-              Verify your Whatsapp Number?
+              Need Help?
             </Typography>
-            <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
+            <Link href={WHATSAPP_GET_HELP_LINK}>
               <Typography
                 variant="body2"
                 style={{
                   textAlign: "center",
                   fontWeight: "700",
-                  color: "rgba(0, 0, 0, 0.6)",
+                  color: "blue",
                   cursor: "pointer",
+                  textDecoration: "underline",
                 }}
               >
                 Click Here

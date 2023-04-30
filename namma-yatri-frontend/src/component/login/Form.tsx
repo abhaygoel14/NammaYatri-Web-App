@@ -70,6 +70,7 @@ function SignUp(props: FormProps) {
       const otp = generateOtp();
       localStorage.setItem("name", name);
       localStorage.setItem("otp", otp.toString());
+      localStorage.setItem("phoneNumber", whatsapp.toString());
       SendOtp({ name, whatsapp, otp });
     }, 3000);
     setShowToast(true);

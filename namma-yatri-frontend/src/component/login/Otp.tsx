@@ -147,7 +147,7 @@ function Otp(props: FormProps) {
           <Divider style={{ paddingTop: "6px" }} />
           <Stack display="flex" spacing={2} p={2}>
             <MuiOtpInput
-              // style={{width:"88%", justifySelf:"center"}}
+              inputMode="numeric"
               length={5}
               value={otp}
               onChange={handleChange}

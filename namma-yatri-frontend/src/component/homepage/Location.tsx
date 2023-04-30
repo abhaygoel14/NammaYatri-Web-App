@@ -9,9 +9,10 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useIsLargeView from "@/utils/useIsLarge";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Crop54Icon from "@mui/icons-material/Crop54";
 import useLiveCity from "../const/useLiveCity";
 import Image from "next/image";
@@ -36,19 +37,52 @@ const VerticalLineComponent = styled(Box)`
   width: min-content;
   z-index: 10;
 `;
+
+interface GeocodeResult {
+  formatted: string;
+}
+
 function Location() {
   const livecity = useLiveCity();
   const [nextClicked, setNextClicked] = useState(false);
   const [location, setLocation] = useState({ pickup: "", destination: "" });
   const isLarge = useIsLargeView();
   const [bookNow, setBookNow] = useState(false);
+  const [boxnum, setBoxNum] = useState(0);
+  const [fetchedData, setFetchedData] = useState<GeocodeResult[]>([]);
+  const [error, setError] = useState(false);
 
   const handleLocation = (name: string) => (e: any) => {
+    if (e.target.value.length > 5) {
+      setError(false);
+    }
     setLocation({ ...location, [name]: e.target.value });
+    if (name == "pickup") {
+      setBoxNum(1);
+    } else {
+      setBoxNum(2);
+    }
   };
-  console.log(location);
+  localStorage.setItem("pickup", location.pickup);
+  localStorage.setItem("destination", location.destination);
 
   const isLoggedIn = localStorage.getItem("isLoggedIn");
+  useEffect(() => {
+    let inputValue = "";
+    if (boxnum == 1) {
+      inputValue = location.pickup;
+    } else {
+      inputValue = location.destination;
+    }
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${inputValue}&key=${process.env.NEXT_PUBLIC_AUTOCOMPLETE_API_KEY}&autocomplete=1`
+      );
+      const data = await response.json();
+      setFetchedData(data.results);
+    };
+    fetchData();
+  }, [location]);
 
   return (
     <>
@@ -79,31 +113,127 @@ function Location() {
                 <Stack
                   display="flex"
                   direction="row"
-                  style={{ background: "rgb(240 240 240)" }}
+                  style={{
+                    background: "rgb(240 240 240)",
+                    position: "relative",
+                  }}
                   spacing={4}
                   mt={2}
                 >
                   <Box></Box>
                   <InputBase
+                    required
+                    value={location.pickup}
                     onChange={handleLocation("pickup")}
                     style={{ padding: ".3rem" }}
                     placeholder="Add pick up location"
                   ></InputBase>
+                  {error && (
+                    <Typography
+                      className="error-message"
+                      style={{ color: "red" }}
+                    >
+                      This is required field
+                    </Typography>
+                  )}
+                  {boxnum == 1 && location.pickup !== "" && (
+                    <Paper
+                      sx={{
+                        position: "absolute",
+                        bottom: "-121px",
+                        padding: ".5rem",
+                        minWidth: "80%",
+                        zIndex: "100",
+                        overflowY: "scroll",
+                        maxHeight: "20vh",
+                      }}
+                    >
+                      {fetchedData.map((res, i) => {
+                        return (
+                          <Box
+                            onClick={() => {
+                              setLocation({
+                                ...location,
+                                pickup: res.formatted,
+                              });
+                              setBoxNum(0);
+                            }}
+                            display="flex"
+                            sx={{ cursor: "pointer" }}
+                            gap="8px"
+                            key={i}
+                          >
+                            <LocationOnIcon />
+                            <Typography>{res.formatted}</Typography>
+                          </Box>
+                        );
+                      })}
+                    </Paper>
+                  )}
                 </Stack>
 
                 <Stack
                   display="flex"
                   direction="row"
-                  style={{ background: "rgb(240 240 240)" }}
+                  style={{
+                    background: "rgb(240 240 240)",
+                    position: "relative",
+                  }}
                   spacing={4}
                   mt={2}
                 >
                   <Box></Box>
                   <InputBase
+                    required
+                    value={location.destination}
                     onChange={handleLocation("destination")}
                     style={{ padding: ".3rem" }}
                     placeholder="Enter your destination"
                   ></InputBase>
+
+                  {error && (
+                    <Typography
+                      className="error-message"
+                      style={{ color: "red" }}
+                    >
+                      This is required field
+                    </Typography>
+                  )}
+
+                  {boxnum == 2 && location.destination !== "" && (
+                    <Paper
+                      sx={{
+                        position: "absolute",
+                        bottom: "-121px",
+                        padding: ".5rem",
+                        minWidth: "80%",
+                        maxHeight: "20vh",
+                        zIndex: "100",
+                        overflowY: "scroll",
+                      }}
+                    >
+                      {fetchedData.map((res, i) => {
+                        return (
+                          <Box
+                            onClick={() => {
+                              setLocation({
+                                ...location,
+                                destination: res.formatted,
+                              });
+                              setBoxNum(0);
+                            }}
+                            display="flex"
+                            sx={{ cursor: "pointer" }}
+                            gap="8px"
+                            key={i}
+                          >
+                            <LocationOnIcon />
+                            <Typography>{res.formatted}</Typography>
+                          </Box>
+                        );
+                      })}
+                    </Paper>
+                  )}
                 </Stack>
 
                 <VerticalLineComponent>
@@ -130,7 +260,16 @@ function Location() {
                 spacing={2}
               >
                 <Typography
-                  onClick={() => setNextClicked(!nextClicked)}
+                  onClick={() => {
+                    if (
+                      location.pickup.length > 5 &&
+                      location.destination.length > 5
+                    ) {
+                      setNextClicked(!nextClicked);
+                    } else {
+                      setError(true);
+                    }
+                  }}
                   style={{ cursor: "pointer" }}
                   fontSize="14px"
                   padding="0 8px"

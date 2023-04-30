@@ -3,6 +3,7 @@ import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import Link from "next/link";
+import { WHATSAPP_BOOKING_HELP } from "../const/api";
 function AutoWala() {
   return (
     <>
@@ -73,7 +74,7 @@ function AutoWala() {
         >
           Need Help?
         </Typography>
-        <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
+        <Link href={WHATSAPP_BOOKING_HELP}>
           <Typography
             sx={{
               color: "blue",
