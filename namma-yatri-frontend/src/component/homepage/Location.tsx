@@ -82,7 +82,7 @@ function Location() {
       setFetchedData(data.results);
     };
     fetchData();
-  }, [location]);
+  }, []);
 
   return (
     <>
