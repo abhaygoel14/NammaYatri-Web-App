@@ -100,7 +100,10 @@ function Location() {
                 sx={{ cursor: "pointer" }}
                 onClick={() => setNextClicked(!nextClicked)}
               />
-              <Booking />
+              <Booking
+                nextClicked={nextClicked}
+                setNextClicked={setNextClicked}
+              />
             </>
           ) : (
             <Box>

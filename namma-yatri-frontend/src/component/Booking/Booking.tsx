@@ -4,15 +4,29 @@ import Image from "next/image";
 import driver from "@/assets/driverOnboard.png";
 import AutoWala from "./AutoWala";
 import useIsLargeView from "@/utils/useIsLarge";
-
-function Booking() {
+interface FormProps {
+  nextClicked: boolean;
+  setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
+}
+function Booking(props: FormProps) {
   const [confirmed, setConfirmed] = useState(false);
+  const [selectedAuto, setSelectedAuto] = useState(false);
+  const [selectedYatri, setSelectedYatri] = useState(false);
   let hour = "",
     minute = "";
   const now = new Date();
   hour = now.getHours().toString();
   minute = now.getMinutes().toString();
   const isLarge = useIsLargeView();
+
+  const handleYatriAuto = () => {
+    setSelectedAuto(true);
+    setSelectedYatri(false);
+  };
+  const handleYatriGo = () => {
+    setSelectedYatri(true);
+    setSelectedAuto(false);
+  };
   return (
     <>
       {!confirmed ? (
@@ -21,7 +35,10 @@ function Booking() {
             <Stack
               display="flex"
               direction="row"
-              style={{ padding: "8px 16px 8px 16px" }}
+              style={{
+                padding: " 8px 16px",
+                backgroundColor: selectedAuto ? "lightblue" : "white",
+              }}
             >
               <Box>
                 <Image
@@ -35,7 +52,12 @@ function Booking() {
               <Stack
                 display="flex"
                 pt={2}
-                style={{ height: "min-content", marginRight: "1rem" }}
+                style={{
+                  height: "min-content",
+                  marginRight: "1rem",
+                  cursor: "pointer",
+                }}
+                onClick={handleYatriAuto}
               >
                 <Typography variant="subtitle1" fontWeight="700">
                   Namma Yatri Auto
@@ -53,7 +75,12 @@ function Booking() {
             <Stack
               display="flex"
               direction="row"
-              style={{ padding: "8px 16px 8px 16px" }}
+              style={{
+                padding: "8px 16px",
+                cursor: "pointer",
+                backgroundColor: selectedYatri ? "lightblue" : "white",
+              }}
+              onClick={handleYatriGo}
             >
               <Box>
                 <Image
@@ -87,6 +114,7 @@ function Booking() {
                   color: "black",
                 }}
                 variant="contained"
+                disabled={!selectedAuto && !selectedYatri}
               >
                 Confirm Book
               </Button>
@@ -102,13 +130,17 @@ function Booking() {
                 color: "black",
               }}
               variant="contained"
+              disabled={!selectedAuto && !selectedYatri}
             >
               Confirm Book
             </Button>
           )}
         </Box>
       ) : (
-        <AutoWala />
+        <AutoWala
+          nextClicked={props.nextClicked}
+          setNextClicked={props.setNextClicked}
+        />
       )}
     </>
   );
