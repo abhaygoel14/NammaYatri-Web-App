@@ -6,7 +6,7 @@ import Link from "next/link";
 function AutoWala() {
   return (
     <>
-      <Stack display="flex" direction="row" padding="1rem" spacing={5}>
+      <Stack display="flex" direction="row" spacing={5}>
         <Box display="flex" alignItems="start" justifyContent="center">
           <Avatar
             src="https://tse4.mm.bing.net/th?id=OIP.XSZAFm-5JI7nriDLwZqRQQHaE7&pid=Api&P=0"
@@ -15,7 +15,11 @@ function AutoWala() {
           ></Avatar>
         </Box>
 
-        <Stack display="flex" spacing={1}>
+        <Stack
+          display="flex"
+          spacing={1}
+          sx={{ marginLeft: "20px !important" }}
+        >
           <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             <Typography variant="subtitle1" fontWeight="600">
               Name:
@@ -61,11 +65,11 @@ function AutoWala() {
           gap: ".3rem",
           alignSelf: "center",
           justifyContent: "center",
-          paddingTop: "1rem",
+          paddingTop: "2rem",
         }}
       >
         <Typography
-          sx={{ opacity: ".5", textAlign: "center", fontSize: "14px" }}
+          sx={{ opacity: "1", textAlign: "center", fontSize: "14px" }}
         >
           Need Help?
         </Typography>

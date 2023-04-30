@@ -16,11 +16,14 @@ import {
 } from "@mui/material";
 import useIsLargeView from "@/utils/useIsLarge";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 interface FormProps {
   show: boolean;
   setshow: React.Dispatch<React.SetStateAction<boolean>>;
+  setshowmodal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 function Otp(props: FormProps) {
   const [otp, setotp] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -77,6 +80,13 @@ function Otp(props: FormProps) {
           open={props.show}
         >
           <DialogContent>
+            <KeyboardBackspaceIcon
+              sx={{ cursor: "pointer", margin: ".5rem" }}
+              onClick={() => {
+                props.setshowmodal(true);
+                props.setshow(false);
+              }}
+            />
             <DialogTitle>
               <Stack
                 display="flex"
@@ -98,12 +108,7 @@ function Otp(props: FormProps) {
             </DialogTitle>
 
             <Stack display="flex" spacing={2} p={2}>
-              <MuiOtpInput
-                // style={{width:"88%", justifySelf:"center"}}
-                length={5}
-                value={otp}
-                onChange={handleChange}
-              />
+              <MuiOtpInput length={5} value={otp} onChange={handleChange} />
 
               <Button
                 onClick={handleotp}
@@ -118,6 +123,13 @@ function Otp(props: FormProps) {
         </Dialog>
       ) : (
         <Drawer anchor="bottom" open={props.show}>
+          <KeyboardBackspaceIcon
+            sx={{ cursor: "pointer", margin: ".5rem" }}
+            onClick={() => {
+              props.setshowmodal(true);
+              props.setshow(false);
+            }}
+          />
           <Stack
             display="flex"
             direction="row"

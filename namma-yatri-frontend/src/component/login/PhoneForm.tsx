@@ -11,8 +11,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import * as React from "react";
-import { useState } from "react";
-
+import WarningIcon from "@mui/icons-material/Warning";
 import Form from "./Form";
 import Link from "next/link";
 
@@ -23,7 +22,6 @@ interface FormProps {
 }
 export default function PhoneForm(props: FormProps) {
   const isLarge = useIsLargeView();
-  const [loginClicked, setloginClicked] = useState(false);
 
   return (
     <>
@@ -34,6 +32,7 @@ export default function PhoneForm(props: FormProps) {
               "& .MuiPaper-root": {
                 width: isLarge ? "70%" : "60%",
                 maxWidth: "500px",
+                maxHeight: "calc(102% - 64px)",
               },
             },
           }}
@@ -48,19 +47,28 @@ export default function PhoneForm(props: FormProps) {
               direction="row"
               justifyContent="space-between"
             >
-              {loginClicked ? "Login" : "Sign Up"}
+              SignUp
               <CloseIcon
                 style={{ cursor: "pointer" }}
                 onClick={() => props.setshowmodal((prevstate) => !prevstate)}
               />
             </Stack>
             <Divider style={{ paddingTop: "6px" }} />
+
+            <Box display="flex" mt={2} gap="4px">
+              <WarningIcon />
+              <Typography
+                variant="body2"
+                style={{ alignSelf: "end", color: "rgba(0, 0, 0, 0.6)" }}
+              >
+                Please verify your WhatsApp number
+              </Typography>
+            </Box>
           </DialogTitle>
 
           <DialogContent>
             <Form
               showmodal={props.showmodal}
-              loginclicked={loginClicked}
               setshowmodal={props.setshowmodal}
               SetOtp={props.SetOtp}
             />
@@ -94,27 +102,35 @@ export default function PhoneForm(props: FormProps) {
           open={props.showmodal}
           onClose={() => props.setshowmodal(false)}
         >
-          {!loginClicked && (
-            <Stack p={2} pb={1} display="flex" direction="column" spacing={2}>
-              <Stack
-                display="flex"
-                direction="row"
-                justifyContent="space-between"
-              >
-                <Typography variant="h5" style={{ fontWeight: "700" }}>
-                  SignUp
-                </Typography>
-                <CloseIcon
-                  onClick={() => props.setshowmodal(!props.showmodal)}
-                  style={{ cursor: "pointer" }}
-                />
-              </Stack>
-              <Divider style={{ marginTop: "8px" }} />
+          <Stack p={2} pb={1} display="flex" direction="column" spacing={2}>
+            <Stack
+              display="flex"
+              direction="row"
+              justifyContent="space-between"
+            >
+              <Typography variant="h5" style={{ fontWeight: "700" }}>
+                SignUp
+              </Typography>
+              <CloseIcon
+                onClick={() => props.setshowmodal(!props.showmodal)}
+                style={{ cursor: "pointer" }}
+              />
             </Stack>
-          )}
+            <Divider style={{ marginTop: "8px" }} />
+
+            <Box display="flex" gap="4px">
+              <WarningIcon />
+              <Typography
+                variant="body2"
+                style={{ alignSelf: "end", color: "rgba(0, 0, 0, 0.6)" }}
+              >
+                Please verify your WhatsApp number
+              </Typography>
+            </Box>
+          </Stack>
+
           <Form
             showmodal={props.showmodal}
-            loginclicked={loginClicked}
             setshowmodal={props.setshowmodal}
             SetOtp={props.SetOtp}
           />
@@ -123,11 +139,10 @@ export default function PhoneForm(props: FormProps) {
               variant="body2"
               style={{ textAlign: "center", color: "rgba(0, 0, 0, 0.6)" }}
             >
-              Already an User?
+              Verify your Whatsapp Number?
             </Typography>
             <Link href="https://wa.me/message/RGQ3A3WT3CLYK1">
               <Typography
-                onClick={() => setloginClicked(!loginClicked)}
                 variant="body2"
                 style={{
                   textAlign: "center",

@@ -6,7 +6,6 @@ import Link from "next/link";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import PhoneForm from "../login/PhoneForm";
-import MenuIcon from "@mui/icons-material/Menu";
 import Otp from "../login/Otp";
 
 const textColor = `opacity: 1;
@@ -36,7 +35,7 @@ export default function Navbar() {
     }
   }, []);
 
-  const user = localStorage.getItem("name")?.toUpperCase();
+  const user = localStorage.getItem("name");
   const handleLogout = () => {
     localStorage.clear();
     setShowLogin("Login/Sign Up");
@@ -80,15 +79,6 @@ export default function Navbar() {
                   }}
                 />
               </Link>
-              {showLogin == "Logout" && (
-                <Typography
-                  style={{ marginLeft: "auto" }}
-                  variant="subtitle1"
-                  fontWeight="700"
-                >
-                  Hi, Nandan
-                </Typography>
-              )}
               {!isLarge && (
                 <>
                   <Button
@@ -119,7 +109,7 @@ export default function Navbar() {
                 </>
               )}
               <Box onClick={showHamBg} style={{ cursor: "pointer" }}>
-                <Avatar>{user?.charAt(0)}</Avatar>
+                <Avatar>{user?.toUpperCase().charAt(0)}</Avatar>
               </Box>
             </Box>
           )}
@@ -185,7 +175,7 @@ export default function Navbar() {
             </Button>
 
             {showLogin === "Logout" && isLarge && (
-              <Avatar>{user?.charAt(0)}</Avatar>
+              <Avatar>{user?.toUpperCase().charAt(0)}</Avatar>
             )}
           </Box>
         </Box>
@@ -197,7 +187,9 @@ export default function Navbar() {
           showmodal={showmodel}
         />
       )}
-      {showotp && <Otp show={showotp} setshow={setshowotp} />}
+      {showotp && (
+        <Otp setshowmodal={setshowmodel} show={showotp} setshow={setshowotp} />
+      )}
     </>
   );
 }
