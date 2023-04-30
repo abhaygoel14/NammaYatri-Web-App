@@ -31,6 +31,8 @@ Addressing the need for improved safety and reliability by implementing a custom
 
 Addressing the need for convenient and secure payment options by allowing riders to easily pay for rides through payment options such as UPI, UPI Auto Pay, cards etc.
 
+![NAMMA YATRI WEBSITE-BASED BOOKING](https://user-images.githubusercontent.com/78078088/235363399-7833e48e-32ee-4c2f-879a-cb5d6d994ea4.png)
+
 
 ## Have Query ?
 Please don't hesitate to reach out to us through abhay.goel14@gmail.com or GitHub Issues. We'd love to hear from you!
