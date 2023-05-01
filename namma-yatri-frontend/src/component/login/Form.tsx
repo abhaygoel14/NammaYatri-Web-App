@@ -77,8 +77,7 @@ function SignUp(props: FormProps) {
     setTimeout(() => {
       props.SetOtp(true);
       props.setshowmodal(!props.showmodal);
-      // console.log(data);
-      const { name, whatsapp, email } = SignUpdetails;
+      const { name, whatsapp } = SignUpdetails;
       const otp = generateOtp();
       localStorage.setItem("name", name);
       localStorage.setItem("otp", otp.toString());

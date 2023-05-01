@@ -16,6 +16,7 @@ import image4 from "@/assets/profilepicture-10-portrait-photography.jpg";
 
 interface FormProps {
   nextClicked: boolean;
+  priceSelected:string;
   setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -113,7 +114,7 @@ function AutoWala(props: FormProps) {
               fontWeight: "bold",
             }}
           >
-            Fare : Rs 615.00
+            Fare : Rs {props.priceSelected}
           </Typography>
 
           <Button
