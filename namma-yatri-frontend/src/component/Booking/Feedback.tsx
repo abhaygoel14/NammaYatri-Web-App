@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Alert,
   InputBase,
   Typography,
   InputLabel,
@@ -14,6 +13,7 @@ import {
   Divider,
   Drawer,
   TextareaAutosize,
+  Alert
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -49,7 +49,7 @@ function FeedBack(props: FormProps) {
   } = useForm();
 
   const handlesubmit = (data: any) => {
-    const { feedback, whatsapp } = FeedBackDetails;
+    const { feedback } = FeedBackDetails;
     localStorage.setItem("feedback", feedback.toString());
 
     setShowToast(true);

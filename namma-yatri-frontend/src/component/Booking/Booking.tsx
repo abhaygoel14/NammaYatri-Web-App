@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography,Divider } from "@mui/material";
 import Image from "next/image";
 import driver from "@/assets/driverOnboard.png";
 import AutoWala from "./AutoWala";
@@ -19,6 +19,8 @@ function Booking(props: FormProps) {
   const [selectedYatri, setSelectedYatri] = useState(false);
   let hour = "",
     minute = "";
+  const priceSelected=selectedAuto?"₹516.39":"₹615.5"
+  
   const now = new Date();
   hour = now.getHours().toString();
   minute = now.getMinutes().toString();
@@ -76,7 +78,8 @@ function Booking(props: FormProps) {
                 <Typography variant="h6">₹516.39</Typography>
               </Box>
             </Stack>
-
+            <Divider/>
+              
             <Stack
               display="flex"
               direction="row"
@@ -145,6 +148,7 @@ function Booking(props: FormProps) {
         <AutoWala
           nextClicked={props.nextClicked}
           setNextClicked={props.setNextClicked}
+          priceSelected={priceSelected}
         />
       )}
     </>
