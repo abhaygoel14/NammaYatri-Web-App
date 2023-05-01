@@ -4,6 +4,10 @@ import rickshawloader from "@/assets/auto_rickshaw_02.webp";
 import Image from "next/image";
 import styled from "@emotion/styled";
 
+/**
+ * A component that displays a loading animation in the center of the screen.
+ * @returns A React component that displays a loading animation.
+ */
 function AutoLoader() {
   const Container = styled(Box)`
     position: absolute;

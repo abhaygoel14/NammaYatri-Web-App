@@ -28,6 +28,11 @@ interface FormProps {
   setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+/**
+ * A component that renders a feedback form and allows users to submit feedback.
+ * @param {FormProps} props - The props object containing the form data.
+ * @returns A JSX element that renders the feedback form.
+ */
 function FeedBack(props: FormProps) {
   const name = localStorage.getItem("name");
   const phoneNumber = localStorage.getItem("phoneNumber");

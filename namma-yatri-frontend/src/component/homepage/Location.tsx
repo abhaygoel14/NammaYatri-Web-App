@@ -31,6 +31,12 @@ const livelocationstyle = {
   alignSelf: "center",
   padding: "8px",
 };
+/**
+ * A styled component that represents a vertical line. The line is positioned absolutely
+ * with a fixed top and left position. The width of the line is set to the minimum content
+ * width. The z-index is set to 10 to ensure that the line is displayed above other elements.
+ * @returns A styled Box component representing a vertical line.
+ */
 const VerticalLineComponent = styled(Box)`
   position: absolute;
   top: 1rem;
@@ -43,6 +49,10 @@ interface GeocodeResult {
   formatted: string;
 }
 
+/**
+ * A component that displays the user's location and allows them to select a pickup and destination.
+ * @returns The Location component.
+ */
 function Location() {
   const livecity = useLiveCity();
   const [nextClicked, setNextClicked] = useState(false);

@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+/**
+ * A custom React hook that returns the current latitude and longitude of the user's device.
+ * @returns An object containing the current latitude and longitude of the user's device.
+ */
 export default function useLiveLocation() {
   const [currLocationJs, setCurrLocationJs] = useState({
     latitude: 0,

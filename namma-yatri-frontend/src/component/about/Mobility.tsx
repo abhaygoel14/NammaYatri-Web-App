@@ -2,6 +2,10 @@ import React from "react";
 import { Box, Typography, styled, Grid } from "@mui/material";
 import location from "@/assets/location.png";
 import Image from "next/image";
+/**
+ * A React component that renders a container with styled components for the Mobility page.
+ * @returns The Mobility component.
+ */
 function Mobility() {
   const Container = styled(Box)`
     color: white;

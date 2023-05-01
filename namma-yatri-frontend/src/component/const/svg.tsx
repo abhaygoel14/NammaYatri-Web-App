@@ -1,3 +1,7 @@
+/**
+ * A React component that renders an SVG icon of a close button.
+ * @returns A React component that renders an SVG icon of a close button.
+ */
 export const CloseSVG = () => {
   return (
     <svg

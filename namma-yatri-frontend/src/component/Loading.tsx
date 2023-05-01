@@ -2,6 +2,12 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import AutoLoader from "@/component/AutoLoader";
 
+/**
+ * A component that displays a loading spinner until the page has finished loading.
+ * @param {Object} props - The props object for the component.
+ * @param {React.ReactNode} props.children - The child components to render once the page has loaded.
+ * @returns The Loading component.
+ */
 export default function Loading(props: { children: React.ReactNode }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);

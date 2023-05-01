@@ -11,6 +11,11 @@ interface FormProps {
   nextClicked: boolean;
   setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
+/**
+ * A component that renders the AutoWala form and feedback component.
+ * @param {FormProps} props - The props object containing the necessary data for the form.
+ * @returns The AutoWala form and feedback components.
+ */
 function AutoWala(props: FormProps) {
   const [showFeedBack, setShowFeedBack] = useState(false);
 

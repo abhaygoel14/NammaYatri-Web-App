@@ -14,12 +14,24 @@ import generateOtp from "@/utils/generateOtp";
 import SendOtp from "@/api/WhatsappApiCall";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
+/**
+ * An interface representing the props for a form component.
+ * @interface FormProps
+ * @property {boolean} showmodal - A boolean indicating whether or not the modal should be displayed.
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} setshowmodal - A function to set the state of the showmodal property.
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} SetOtp - A function to set the state of the OTP property.
+ */
 interface FormProps {
   showmodal: boolean;
   setshowmodal: React.Dispatch<React.SetStateAction<boolean>>;
   SetOtp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+/**
+ * A functional component that renders a sign up form.
+ * @param {FormProps} props - The props object containing the form data.
+ * @returns The sign up form JSX.
+ */
 function SignUp(props: FormProps) {
   const [SignUpdetails, setSignUpdetails] = useState({
     name: "",

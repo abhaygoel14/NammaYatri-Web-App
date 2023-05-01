@@ -8,6 +8,11 @@ interface FormProps {
   nextClicked: boolean;
   setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
+/**
+ * A component that renders a booking form and an AutoWala component.
+ * @param {FormProps} props - The props object containing the necessary data for the form.
+ * @returns A JSX element that renders the booking form and the AutoWala component.
+ */
 function Booking(props: FormProps) {
   const [confirmed, setConfirmed] = useState(false);
   const [selectedAuto, setSelectedAuto] = useState(false);

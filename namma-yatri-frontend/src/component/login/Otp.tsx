@@ -18,12 +18,25 @@ import useIsLargeView from "@/utils/useIsLarge";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
+/**
+ * An interface representing the props for a form component.
+ * @interface FormProps
+ * @property {boolean} show - A boolean indicating whether or not the form should be displayed.
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} setshow - A function to set the value of the show property.
+ * @property {React.Dispatch<React.SetStateAction<boolean>>} setshowmodal - A function to set the value of the showmodal property.
+ */
 interface FormProps {
   show: boolean;
   setshow: React.Dispatch<React.SetStateAction<boolean>>;
   setshowmodal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+/**
+ * A component that renders an OTP input field and displays a success or error message
+ * based on the input value.
+ * @param {FormProps} props - The props object containing the form data.
+ * @returns A JSX element that renders the OTP input field and success/error message.
+ */
 function Otp(props: FormProps) {
   const [otp, setotp] = useState("");
   const [showToast, setShowToast] = useState(false);

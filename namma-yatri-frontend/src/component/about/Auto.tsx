@@ -2,6 +2,10 @@ import React from "react";
 import { Box, Typography, styled, Grid } from "@mui/material";
 import driver from "@/assets/driverOnboard.png";
 import Image from "next/image";
+/**
+ * A React component that renders a container with styled text and an image.
+ * @returns A React component that renders a container with styled text and an image.
+ */
 function Auto() {
   const Container = styled(Box)`
     /* padding: 2.5rem 2rem 5rem; */

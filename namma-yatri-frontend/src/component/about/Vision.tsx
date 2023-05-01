@@ -2,6 +2,10 @@ import React from "react";
 import { Box, Typography, styled, Grid } from "@mui/material";
 import vision from "@/assets/vision.png";
 import Image from "next/image";
+/**
+ * A React component that renders a vision section with an image and text.
+ * @returns {JSX.Element} - A React component that renders a vision section with an image and text.
+ */
 function Vision() {
   const Container = styled(Box)`
     & > div > div > p {

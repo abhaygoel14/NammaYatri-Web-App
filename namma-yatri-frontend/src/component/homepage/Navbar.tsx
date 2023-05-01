@@ -8,9 +8,17 @@ import { useState, useEffect } from "react";
 import PhoneForm from "../login/PhoneForm";
 import Otp from "../login/Otp";
 
+/**
+ * A string representing CSS styles for text color with opacity.
+ * @type {string}
+ */
 const textColor = `opacity: 1;
 color: rgb(244 244 246 / var(opacity));`;
 
+/**
+ * A styled component that renders a Typography component with custom styles.
+ * @returns A styled Typography component with custom styles.
+ */
 const StyledTypography = styled(Typography)`
   ${textColor}
   font-size: 18px;
@@ -18,6 +26,12 @@ const StyledTypography = styled(Typography)`
   cursor: pointer;
 `;
 
+/**
+ * The Navbar component displays the navigation bar at the top of the page.
+ * It contains state variables for showing/hiding the OTP and login modal, as well as
+ * the dropdown menu for smaller screens.
+ * @returns The Navbar component.
+ */
 export default function Navbar() {
   const isLarge = useIsLargeView();
   const [showotp, setshowotp] = useState(false);

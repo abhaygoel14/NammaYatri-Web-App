@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+/**
+ * A custom React hook that uses the browser's geolocation API to get the user's current city, latitude, and longitude.
+ * @returns An object containing the user's current city, error message (if any), latitude, and longitude.
+ */
 function useLiveCity() {
   const [city, setCity] = useState("");
   const [error, setError] = useState("");

@@ -14,6 +14,10 @@ import Typography from "@mui/material/Typography";
 
 const NavbarComponent = dynamic(() => import("@/component/homepage/Navbar"));
 
+/**
+ * A functional component that renders a login page.
+ * @returns {JSX.Element} - The JSX code that renders the login page.
+ */
 export default function Login() {
   const isLarge = useIsLargeView();
   const [loginPopUp, setLoginPopup] = useState(true);
@@ -28,6 +32,12 @@ export default function Login() {
   );
 }
 
+/**
+ * A styled component that extends the Dialog component from Material-UI. It applies
+ * custom styles to the Dialog's content and actions.
+ * @param {Object} theme - The theme object from Material-UI.
+ * @returns A styled Dialog component with custom styles applied to its content and actions.
+ */
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -37,12 +47,24 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+/**
+ * Interface for the props of a DialogTitle component.
+ * @interface
+ * @property {string} id - The id of the DialogTitle component.
+ * @property {React.ReactNode} [children] - The child elements of the DialogTitle component.
+ * @property {() => void} onClose - The function to call when the DialogTitle is closed.
+ */
 export interface DialogTitleProps {
   id: string;
   children?: React.ReactNode;
   onClose: () => void;
 }
 
+/**
+ * A component that renders a dialog title with an optional close button.
+ * @param {DialogTitleProps} props - The props object containing the children and onClose function.
+ * @returns A DialogTitle component with an optional close button.
+ */
 function BootstrapDialogTitle(props: DialogTitleProps) {
   const { children, onClose, ...other } = props;
 
@@ -65,6 +87,10 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
   );
 }
 
+/**
+ * A component that renders a customized dialog box.
+ * @returns {JSX.Element} - A JSX element that represents the dialog box.
+ */
 function CustomizedDialogs() {
   const [open, setOpen] = useState(false);
 
