@@ -25,9 +25,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 
-## Video Demo :
+## Video Demo (Desktop View) :
 https://drive.google.com/file/d/11PsPhw9b8XygPO4ak_ypGJcj3zze1M-Y/view?usp=sharing
 
 
-
 https://user-images.githubusercontent.com/78078088/235427416-1522f532-9b79-43e6-9ec5-358f267c9075.mp4
+
+
+## Video Demo (Mobile View) :
+
+https://user-images.githubusercontent.com/78078088/235427601-f95ec9f3-8c76-4f21-aafe-c432d6e3e9d3.mp4
+
+
+
+
+
