@@ -163,7 +163,7 @@ export default function PhoneForm(props: FormProps) {
                   gap: "4px",
                 }}
               >
-                Please verify your WhatsApp number
+                Please verify your WhatsApp number before login
                 <Link href={WHATSAPP_GET_VERIFY_LINK}>
                   <Typography
                     variant="body2"

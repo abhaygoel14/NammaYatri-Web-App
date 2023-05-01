@@ -12,7 +12,7 @@ export default function SendOtp({ name, whatsapp, otp }: any) {
         messaging_product: "whatsapp",
         to: `91${whatsapp}`,
         text: {
-          body: `*${otp}* is your NammaYatri OTP.Welcome *${name}* to the Namma Yatri on an App! This OTP will let you order from Multiple Restaurants in ONE Order & get FREE Delivery*!Tap below to login directly**👇`,
+          body: `*${otp}* is your NammaYatri OTP.Welcome *${name}* to the Namma Yatri on an App! This OTP will let you Book your ride by a click now ! Safe ride👇`,
         },
         access_token: AUTH_TOKEN,
       });
