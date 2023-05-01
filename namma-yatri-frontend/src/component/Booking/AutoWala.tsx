@@ -6,11 +6,19 @@ import AnnouncementIcon from "@mui/icons-material/Announcement";
 import Link from "next/link";
 import { WHATSAPP_BOOKING_HELP } from "../const/api";
 import FeedBack from "./Feedback";
+import image1 from "@/assets/FjU2lkcWYAgNG6d.jpg";
+import image2 from "@/assets/istockphoto-1309328823-612x612.jpg";
+import image3 from "@/assets/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg";
+import image4 from "@/assets/profilepicture-10-portrait-photography.jpg";
+
+
+
 
 interface FormProps {
   nextClicked: boolean;
   setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 /**
  * A component that renders the AutoWala form and feedback component.
  * @param {FormProps} props - The props object containing the necessary data for the form.
@@ -18,7 +26,10 @@ interface FormProps {
  */
 function AutoWala(props: FormProps) {
   const [showFeedBack, setShowFeedBack] = useState(false);
-
+  const randomAutowalNames=["Amith S","Rajesh B","Bharath K","Nandan B"]
+  const randomAutowalaImages=[image1,image2,image3,image4]
+  const randomNumber=Math.floor(Math.random()*randomAutowalNames.length)
+  
   return (
     <>
       <>
@@ -41,10 +52,13 @@ function AutoWala(props: FormProps) {
         <Stack display="flex" direction="row" spacing={5}>
           <Box display="flex" alignItems="start" justifyContent="center">
             <Avatar
-              src="https://tse4.mm.bing.net/th?id=OIP.XSZAFm-5JI7nriDLwZqRQQHaE7&pid=Api&P=0"
+              src={randomAutowalaImages[randomNumber].src}
               sx={{ height: "100px", width: "100px" }}
               variant="square"
+              alt=""
             ></Avatar>
+
+          
           </Box>
 
           <Stack
@@ -56,7 +70,7 @@ function AutoWala(props: FormProps) {
               <Typography variant="subtitle1" fontWeight="600">
                 Name:
               </Typography>
-              <Typography variant="body2">Nandan Bilagi</Typography>
+              <Typography variant="body2">{randomAutowalNames[randomNumber]}</Typography>
               <VerifiedIcon sx={{ color: "green", fontSize: "16px" }} />
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
