@@ -10,7 +10,7 @@
 
 Namma Yatri is a Direct-to-Driver open mobility platform, developed by Juspay, powering the next-generation of mobility applications in India.
 
-The code in this repository are divided into sub-projects : Frontend.
+The code in this repository are into sub-projects : Frontend.
 
 ## Getting Started
 
