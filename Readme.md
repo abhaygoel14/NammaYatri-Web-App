@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-<i>Open sourced Web App Website Based Booking. No middleman. Secure. Safe.</i>
+<i>Web-based booking system with open-source code. No middleman. Secure. Safe.</i>
 </p>
 
 ## Namma Yatri Open Mobility Challenge
