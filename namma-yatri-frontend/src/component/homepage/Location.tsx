@@ -10,7 +10,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useIsLargeView from "@/utils/useIsLarge";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -54,7 +54,8 @@ interface GeocodeResult {
  * @returns The Location component.
  */
 function Location() {
-  const livecity = useLiveCity();
+  const liveCityData=useLiveCity()
+  const [liveCity,setLiveCity]=useState("")
   const [nextClicked, setNextClicked] = useState(false);
   const [location, setLocation] = useState({ pickup: "", destination: "" });
   const isLarge = useIsLargeView();
@@ -77,6 +78,7 @@ function Location() {
   localStorage.setItem("pickup", location.pickup);
   localStorage.setItem("destination", location.destination);
 
+
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   useEffect(() => {
     let inputValue = "";
@@ -95,6 +97,10 @@ function Location() {
     fetchData();
   }, [location]);
 
+
+  useEffect(()=>{
+   setLiveCity(liveCityData?.city)
+  },[liveCityData])
   return (
     <>
       <Paper
@@ -309,7 +315,7 @@ function Location() {
                 </Box>
                 <Box>
                   <Typography variant="subtitle1" fontWeight="700">
-                    {livecity.city}
+                    {liveCity}
                   </Typography>
                   <Typography variant="body2">Your location</Typography>
                 </Box>
