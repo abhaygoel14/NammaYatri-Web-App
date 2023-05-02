@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -27,9 +27,15 @@ interface FormProps {
  */
 function AutoWala(props: FormProps) {
   const [showFeedBack, setShowFeedBack] = useState(false);
+  const [imageNumber,setImageNumber]=useState(0)
   const randomAutowalNames=["Amith S","Rajesh B","Bharath K","Nandan B"]
   const randomAutowalaImages=[image1,image2,image3,image4]
-  const randomNumber=Math.floor(Math.random()*randomAutowalNames.length)
+
+  useEffect(()=>{
+    setImageNumber(Math.floor(Math.random()*randomAutowalNames.length))
+  },[])
+
+
   
   return (
     <>
@@ -53,7 +59,7 @@ function AutoWala(props: FormProps) {
         <Stack display="flex" direction="row" spacing={5}>
           <Box display="flex" alignItems="start" justifyContent="center">
             <Avatar
-              src={randomAutowalaImages[randomNumber].src}
+              src={randomAutowalaImages[imageNumber].src}
               sx={{ height: "100px", width: "100px" }}
               variant="square"
               alt=""
@@ -71,7 +77,7 @@ function AutoWala(props: FormProps) {
               <Typography variant="subtitle1" fontWeight="600">
                 Name:
               </Typography>
-              <Typography variant="body2">{randomAutowalNames[randomNumber]}</Typography>
+              <Typography variant="body2">{randomAutowalNames[imageNumber]}</Typography>
               <VerifiedIcon sx={{ color: "green", fontSize: "16px" }} />
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
