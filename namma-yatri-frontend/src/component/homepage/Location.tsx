@@ -20,6 +20,7 @@ import Image from "next/image";
 import VerticalLine from "@/assets/vertical-line.png";
 import Booking from "../Booking/Booking";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { useDebounce } from "../const/useDebounce";
 
 const livelocationstyle = {
   borderRadius: "50%",
@@ -64,6 +65,10 @@ function Location() {
   const [fetchedData, setFetchedData] = useState<GeocodeResult[]>([]);
   const [error, setError] = useState(false);
 
+  const debounceLocation=useDebounce(location,300)
+
+
+  
   const handleLocation = (name: string) => (e: any) => {
     if (e.target.value.length > 5) {
       setError(false);
@@ -75,11 +80,12 @@ function Location() {
       setBoxNum(2);
     }
   };
+
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
   localStorage.setItem("pickup", location.pickup);
   localStorage.setItem("destination", location.destination);
 
-
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  
   useEffect(() => {
     let inputValue = "";
     if (boxnum == 1) {
@@ -95,12 +101,13 @@ function Location() {
       setFetchedData(data.results);
     };
     fetchData();
-  }, [location]);
+  }, [debounceLocation]);
 
 
   useEffect(()=>{
    setLiveCity(liveCityData?.city)
   },[liveCityData])
+
   return (
     <>
       <Paper
